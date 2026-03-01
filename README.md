@@ -1,75 +1,116 @@
 ## 🛡️ Phishing Detection System using Rule-Based URL Analysis
-📖 Overview
+## 📖 Overview
 
-This project is a Python-based phishing detection system that identifies potentially malicious websites using rule-based heuristics instead of AI or machine learning.
-It analyzes various aspects of a URL—such as domain age, HTTPS usage, and URL patterns—to determine if it may be part of a phishing attempt.
-This tool is simple, fast, and effective for educational or security awareness purposes.
+This project is a Rule-Based Phishing URL Detection System that analyzes URLs using multiple security heuristics instead of machine learning. It calculates a risk score and risk percentage based on domain age, HTTPS status, suspicious patterns, DNS validation, blacklist matching, URL length, and domain structure to determine whether a URL is likely safe or a phishing attempt.
 
 ## ⚙️ Features
 
-🔍 Domain Age Check: Uses WHOIS lookup to find if the domain is newly created.
+🔐 HTTPS verification
 
-🔐 HTTPS Verification: Flags insecure websites that lack HTTPS connections.
+📅 Domain age detection (new domains flagged)
 
-🧩 Pattern Detection: Scans for IP addresses, suspicious characters, or misleading keywords in URLs.
+🌐 DNS record validation
 
-⚙️ Customizable Threshold: You can adjust the risk level based on desired sensitivity.
+🚫 Blacklist domain checking
 
-💡 Simple & Lightweight: Requires no complex setup or datasets.
+📏 URL length analysis
+
+➖ Hyphen detection in domain
+
+⚠️ Suspicious pattern detection (IP address, '@', sensitive keywords)
+
+📊 Risk score + risk percentage output
+
+✅ Clear verdict: Likely Safe or Phishing Attempt
 
 ## 🧰 Modules and Libraries Used:
 
-This project uses the following Python libraries:
+requests → To check HTTPS status
 
-requests – For making HTTP requests and checking URL connectivity
+whois → To retrieve domain creation date
 
-whois – To fetch domain registration details
+socket → To verify DNS existence
 
-datetime – To calculate domain age
+datetime → To calculate domain age
 
-urllib.parse – To parse and extract URL components
+urllib.parse → To extract domain details
 
-re – For detecting suspicious text patterns using regular expressions
+re → For pattern matching in URLs
 
 ## 🚀 Workflow
 
-The user inputs a website URL.
+> User enters a URL.
 
-The script performs several heuristic checks (HTTPS, domain age, URL structure).
+> URL is normalized (adds HTTP if missing).
 
-Each failed check adds to the risk score.
+> System extracts domain information.
 
-If the total score exceeds a defined threshold, the site is flagged as “Phishing”, else marked “Legitimate.”
+> Multiple security checks are performed:
+
+	  Domain age check
+
+	  HTTPS validation
+
+	  Pattern analysis
+
+	  URL length check
+
+	  Hyphen detection
+
+	  DNS verification
+
+    Blacklist comparison
+
+> Risk scores from all checks are added.
+
+> Risk percentage is calculated.
+
+> Final verdict is displayed.
 
 ## 🧑‍💻 How to Run
 
-Install the required libraries:
+Install required libraries:
 
 pip install requests python-whois
 
+Save the Python file (e.g., phishing_detector.py).
 
-Run the script or Jupyter Notebook:
+Run the script:
 
-python phishing_project.ipynb
+python phishing_detector.py
 
-
-Enter a URL when prompted and check the result.
+Modify the analyze_url() input to test different URLs.
 
 ## 📊 Example Output
-[INFO] Domain Age: 45 days old.
-[WARNING] HTTPS Status: Insecure (HTTP).
-[WARNING] Suspicious pattern detected in URL.
-⚠️ Risk Score: 4 — Classified as PHISHING
+
+--------------------------------------------------
+Analyzing: http://google-secure-login.com/update
+
+[WARNING] Domain Age: 45 days
+[WARNING] HTTPS: Not Secure
+[WARNING] Sensitive keyword found
+[WARNING] Hyphen in domain
+[INFO] DNS record exists
+
+Final Risk Score: 5
+Risk Percentage: 50.00%
+Verdict: 🚨 PHISHING ATTEMPT
+--------------------------------------------------
 
 ## 🔮 Future Improvements
 
-Add machine learning models for automated detection.
+📂 Add CSV file input for bulk URL testing
 
-Integrate with a browser extension for real-time scanning.
+📊 Generate graphical risk report
 
-Build a simple UI dashboard for better usability.
+🌍 Integrate real-time phishing threat APIs
+
+🧠 Upgrade to hybrid model (rule-based + ML)
+
+🖥 Develop a lightweight web interface
 
 ## 👨‍💻 Author
 
 Akhil Sid
-B.Tech Student — Project on Cybersecurity Awareness
+Cybersecurity & AI Enthusiast
+Rule-Based Phishing Detection Lab Project (2026)
